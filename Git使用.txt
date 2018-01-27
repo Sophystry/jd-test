@@ -1,0 +1,96 @@
+git的第一次使用步骤
+	1. 在当前项目上 创建一个本地仓库 在jd项目里面打开黑窗（打开方式 右键git bash here）
+		执行 git init
+	2. 把当前项目需要管理的源代码添加暂存区 打开git黑窗
+		执行 git add 文件名.扩展名
+		例如 git add index.html
+		如果所有代码都需要管理
+		执行 git add .
+	3. 把暂存区代码提交到本地仓库 打开git黑窗
+		执行 git commit -m '提交日志'
+		例如 
+		git commit -m '项目经理第一次提交'
+		第一次会报错
+		 git config --global user.email "github的邮箱"
+		 git config --global user.name "github用户名"
+		例如
+		 git config --global user.email "228197155@qq.com"
+		 git config --global user.name "zwxs"
+	4. 去github网站创建一个仓库
+		1. 进入https://github.com/  同时登陆账号
+		2. 点击右上角的头像 your profile
+		3. 点击repositories
+		4. 点击右上角的new
+		5. 在 Repository name 输入仓库名（最好使用英文）
+		6. 还可以输入描述 Description 可以写中文 （描述可以不写）
+		7. 点击create Repository 创建仓库
+	5. 指定当前本地仓库要提交到的服务器仓库地址 每个人都不一样
+		git remote add origin 仓库的地址 
+		例如
+		git remote add origin https://github.com/zwxs/jd-demo.git
+	6. 把当前本地仓库的代码提交到服务器
+		git push -u origin master
+		可能会弹出用户名密码框框 输入用户名密码确定
+
+
+1. 从服务器仓库去获取最新的代码
+		git pull
+	2. 如果不获取最新的代码 直接提交 就会报错
+		 ! [rejected]        master -> master (fetch first)
+		error: failed to push some refs to 'https://github.com/zwxs/jd-demo1.git'
+		hint: Updates were rejected because the remote contains work that you do
+		hint: not have locally. This is usually caused by another repository pushing
+		hint: to the same ref. You may want to first integrate the remote changes
+		hint: (e.g., 'git pull ...') before pushing again.
+		hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+	3. 先获取最新的代码 然后再次提交
+		如果服务器里面删掉了你写的代码 你更新也会删掉
+	4. 如果实在出现了冲突要如何解决（回到不冲突之前的版本）
+		1. 使用git log查看历史的版本
+		2. 通过版本回退的代码回到指定版本 
+			git reset --hard 版本号
+			例如 git reset --hard  74c42b035fa11e7d2d1619b8e3975fd78c73b054 
+	5. 要养成备份代码的习惯	1. 先 git pull 获取最新代码
+	2. 在提交
+
+
+1. 从项目经理给的仓库把项目下载到本地电脑
+		git clone 仓库地址
+		例如 git clone https://github.com/zwxs/jd-demo1.git
+		会把代码下载到本地 文件夹名就是仓库名
+	2. 张三就写自己要写的代码
+	3. 把当前项目需要管理的源代码添加暂存区 打开git黑窗
+		执行 git add 文件名.扩展名
+		例如 git add index.html
+		如果所有代码都需要管理
+		执行 git add .
+	4. 把暂存区代码提交到本地仓库 打开git黑窗
+		执行 git commit -m '提交日志'
+		例如 
+		git commit -m '项目经理第一次提交'
+		第一次会报错
+		 git config --global user.email "github的邮箱"
+		 git config --global user.name "github用户名"
+		例如
+		 git config --global user.email "228197155@qq.com"
+		 git config --global user.name "zwxs"
+	5. 把当前本地仓库的代码提交到服务器
+		git push -u origin master
+		可能会弹出用户名密码框框 输入用户名密码确定	李四去使用git步骤
+
+
+
+
+2. 创建ssh无密码登录步骤
+		1. 进入用户目录的.ssh文件夹 如果没有就创建一个  在用户目录打开黑窗 输入 mkdir .ssh
+		2. 进入.ssh的目录 右键打开git的黑窗
+		3. 运行生成公钥的代码
+			ssh-keygen -t rsa -C "228197155@qq.com"
+		4. 复制你的公钥代码 打开id_rsa.pub 文件  复制里面的所有代码
+		5. 去github的个人设置绑定你的公钥
+			1. 点击头像的设置 settings
+			2. 点击 SSH and GPG keys
+			3. 点击 new ssh key 
+			4. 把公钥粘贴在key里面 title名任意写（英文）
+			5. 点击add ssh key
+			6. 可能会要输入密码  输入密码就行了
